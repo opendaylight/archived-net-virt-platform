@@ -1,0 +1,12 @@
+*~
+*.class
+.classpath
+.project
+.settings/
+.pydevproject
+.settings
+.DS_Store
+target
+*.swp
+*.pyc
+findbugs-results

@@ -1,0 +1,21 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head></head>
+<body>
+  Provides flow-cache service by keeping a local cache of the flows in the
+  network. The flow-cache can be queried to get the flows by application, by
+  application and VLAN, by application, VLAN, and destination device and by
+  application, VLAN, source and destination devices. For large networks all the
+  flows in the network may not have been cached. However, flow-cache service
+  hides this from its API callers by querying the switches for the flows that
+  are not cached and then returning these flows along with the other flows that
+  are in the cache.
+
+  Caller of flow-cache public api gets an unique query handle. The flows are
+  returned asynchronously along with this handle so that the caller can match
+  the query with the query response. The queried flows may be returned in
+  multiple batches if the number of flows queried is large. In the last batch 
+  of the response, a flag would be set to indicate that this is the last 
+  response for the query handle that was returned earlier.
+</body>
+</html>
