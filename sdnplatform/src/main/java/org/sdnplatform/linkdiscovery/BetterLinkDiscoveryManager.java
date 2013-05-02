@@ -65,8 +65,6 @@ IModule, IInfoProvider {
     public void init (ModuleContext context) {
 
         try {
-            // set the default value to true.
-            AUTOPORTFAST_DEFAULT = true;
             super.init(context);
             tunnelManager = context.getServiceImpl(ITunnelManagerService.class);
         } catch (Exception e) {
