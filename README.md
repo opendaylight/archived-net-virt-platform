@@ -89,7 +89,25 @@ If the webserver does not use `/cgi-bin` for CGI file access, modify the `CGI_PA
 
 # Eclipse environment #
 
-To set up an eclipse environment:
+1) At the shell, create the .project files with `make eclipse`
+% make eclipse
 
-1. `make eclipse` to generate eclipse project files
-2. Import "sdnplatform" project into any eclipse workspace
+2) In Eclipse, create a new workspace:
+Click File -> Switch WorkSpace -> Other and then enter the name of
+the new workspace, e.g. "Workspace.net-virt-platform"
+
+3) Once in the new workspace, import all of the eclipse projects
+Click File -> Import -> General -> Existing Projects into Workspace
+-> Next in the "Select Root Directory" dialog, type in or navigate
+to your checkout of the net-virt-platform base directory, e.g.,
+~/git/net-virt-platform .
+
+Eclipse should automatically find four eclipse projects: 
+* cli
+* django_cassandra_backend
+* sdncon
+* sdnplatform
+Make sure they are all checked (the default) and click "Finish"
+
+If you are looking to do python development, it is recommended that
+you install the Eclipse "pydev" modules, as documented at http://pydev.org.
