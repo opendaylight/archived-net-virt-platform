@@ -35,6 +35,7 @@ SDNPLATFORMADDR = dashboardsettings.SDNPLATFORMIP + ':' + dashboardsettings.SDNP
 url = 'http://' + SDNPLATFORMADDR + '/rest/v1/switches'
 url2 = 'http://' + SDNPLATFORMADDR + '/rest/v1/device'
 url3 = 'http://' + SDNPLATFORMADDR + '/rest/v1/links'
+url4 = 'http://' + SDNPLATFORMADDR + '/rest/v1/tunnel-manager/all'
 
 
 # Query JSON from API and load into dictionary
@@ -42,11 +43,13 @@ switches = json.load(urllib2.urlopen(url))
 devices = json.load(urllib2.urlopen(url2))
 links = json.load(urllib2.urlopen(url3))
 aliasDict = switchalias.aliasDict(SDNPLATFORMADDR)
+tunnels = json.load(urllib2.urlopen(url4))
 
 # Dictionaries
 parsedswitch = []
 parseddevices = []
 parsedlinks = []
+parsedtunnels = []
 
 # Step through master 'switches' list, extract entry for each dictionary.
 for index_switches,value1_switches in enumerate(switches):
@@ -95,6 +98,14 @@ for index_links,value1_links in enumerate(links):
   # append to final sorted output.
   parsedlinks.append(tempdict)
 
+# Step through master 'tunnels' list, extract entry for each dictionary.
+for index_tunnels,value1_tunnels in tunnels.iteritems():
+  tempdict = {}
+  if value1_tunnels.get('tunnelState','') == 'active':
+    tempdict['dpid'] = value1_tunnels.get('hexDpid','')
+    # append to final sorted output.
+    parsedtunnels.append(tempdict)
+
 #Begin puting the data in the JSON list
 jsonoutput = []
 
@@ -127,5 +138,20 @@ for index_link,value_link in enumerate(parsedlinks):
   adjacenciestmp.append({'nodeTo': str(value_link['src-switch']), 'nodeFrom': value_link['dst-switch'], 'data': { '$color': '#f15922', '$lineWidth': '3' }})
   datatmp = { '$color': '#f15922', '$type': 'square', '$dim': '10'}
   jsonoutput.append({'adjacencies': adjacenciestmp, 'data': datatmp, 'id': value_link['dst-switch'], 'name': aliasDict.get(value_link['dst-switch'], value_link['dst-switch'])})
+
+# Determine  if tunnels are active/available
+if parsedtunnels:
+  # Create dynamic tunnel connector object 
+  datatmp = { '$color': '#888888', '$type': 'square', '$dim': '4'}
+  jsonoutput.append({'adjacencies': [], 'data': datatmp, 'id': 'dynamic_tunnel', 'name': 'Dynamic Tunnels'})
+  # Draw connections between switches and dynamic tunnel object
+  for index_tunnels,value_tunnels in enumerate(parsedtunnels):
+    adjacenciestmp = []
+    datatmp = {}
+  
+    adjacenciestmp.append({'nodeTo': 'dynamic_tunnel', 'nodeFrom': value_tunnels['dpid'], 'data': { '$color': '#888888', '$lineWidth': '3' }})
+    datatmp = { '$color': '#f15922', '$type': 'square', '$dim': '10'}
+    jsonoutput.append({'adjacencies': adjacenciestmp, 'data': datatmp, 'id': value_tunnels['dpid'], 'name': aliasDict.get(value_tunnels['dpid'], value_tunnels['dpid'])})
+
 
 print 'var json =' + json.dumps(jsonoutput, sort_keys=True, indent=4, separators=(',', ': ')) + ';'
