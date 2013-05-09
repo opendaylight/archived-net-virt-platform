@@ -23,7 +23,7 @@ FL_DIR = $(SOURCE)/sdnplatform
 all: build-sdnplatform
 
 clean-python:
-	echo 'import setuptools\nsetuptools.setup(name="django_cassandra", version="0.1", packages=["django_cassandra", "django_cassandra.db"])' >$(SOURCE)/django_cassandra_backend/setup.py
+	echo -e 'import setuptools\nsetuptools.setup(name="django_cassandra", version="0.1", packages=["django_cassandra", "django_cassandra.db"])' >$(SOURCE)/django_cassandra_backend/setup.py
 	echo '$(SOURCE)' >$$(python -c 'import distutils; print distutils.sysconfig.get_python_lib()')/sdnplatform.pth
 	set -e; \
 	cd $(SOURCE); \
