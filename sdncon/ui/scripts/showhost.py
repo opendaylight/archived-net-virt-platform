@@ -27,7 +27,6 @@ import datetime
 import json
 import urllib2
 import switchalias
-import dashboardsettings
 from sdncon.rest.views import do_switches, do_model_list, do_instance, do_device
 
 def show_host_data(request):

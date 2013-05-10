@@ -26,11 +26,10 @@ import time
 import json
 import urllib2
 import switchalias
-import dashboardsettings
 from sdncon.rest.views import do_switches, do_model_list, do_instance, do_device, do_links
 
 
-def switch_link_data(request):
+def show_link_data(request):
 
     # Query JSON from API and load into dictionary
     switches = json.loads(do_switches(request).content)

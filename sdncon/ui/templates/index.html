@@ -53,8 +53,9 @@
 								<li><a href="#tabs-1">Switches</a></li>
 								<li><a href="#tabs-2">Inter-Switch Links</a></li>
 								<li><a href="#tabs-3">Hosts</a></li>
-								<li><a href="#tabs-4">Topology</a></li>
-								<span class="refresh" onClick="refreshTable(99);" style="float: right; padding: .6em; position: relative; z-index:1;"><img src="/static/images/refresh.png" border="0"></span>
+								<li><a href="#tabs-4">Tunnels</a></li>
+								<li><a href="#tabs-5">Topology</a></li>
+								<span class="refresh" onClick="refreshTable(99);" style="float: right; padding: .6em; position: relative; z-index:1;"><img src="images/refresh.png" border="0"></span>
 							</ul>
 							<div id="tabs-1">
 								<div id="switchTableHolder" class="dynamictable">
@@ -70,8 +71,12 @@
 								<div id="deviceTableHolder" class="dynamictable">
 								</div>
 							</div>
-							<div style="clear: both;"></div>
 							<div id="tabs-4">
+								<div id="tunnelTableHolder" class="dynamictable">
+								</div>
+							</div>
+							<div style="clear: both;"></div>
+							<div id="tabs-5">
 								<div id="TopologyTableHolder" class="dynamictable" style="border: 1px #e5e5e5;">
 									<div id="container">
 										<div id="center-container" style="background-color: #e5e5e5; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;">
@@ -114,7 +119,6 @@
                 <script src="static/js/thirdparty/jquery-1.9.1.min.js"></script>  
                 <script src="static/js/thirdparty/jquery-ui-1.10.2.custom.min.js"></script>
 				<script type="text/javascript">
-				var UI_PATH = "ui";
 
 					$(document).ready(function(){
 							refreshTable(99);
@@ -147,6 +151,9 @@ function refreshTable(choice){
 			$('#deviceTableHolder').load('ui/show_host');
 			break;
 		case 3:
+			$('#tunnelTableHolder').load('ui/show_tunnel');
+			break;
+		case 4:
 			var tmpJSON = loadTopologyJSON();
 			fd.loadJSON(tmpJSON);
 			fd.refresh();
@@ -155,6 +162,7 @@ function refreshTable(choice){
 			$('#switchTableHolder').load('ui/show_switch');
 			$('#linkTableHolder').load('ui/show_link');
 			$('#deviceTableHolder').load('ui/show_host');
+			$('#tunnelTableHolder').load('ui/show_tunnel');
 			var tmpJSON = loadTopologyJSON();
 			fd.loadJSON(tmpJSON);
 			fd.refresh();

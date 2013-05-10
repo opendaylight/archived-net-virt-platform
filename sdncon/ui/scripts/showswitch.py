@@ -25,7 +25,6 @@ import sys
 import time
 import json
 import urllib2
-import dashboardsettings
 from sdncon.rest.views import do_switches, do_model_list, do_instance
 
 def show_switch_data(request):

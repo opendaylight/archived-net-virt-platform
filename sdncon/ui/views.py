@@ -29,7 +29,8 @@ from sdncon.clusterAdmin.utils import conditionally, isCloudBuild
 from sdncon.clusterAdmin.models import Customer, Cluster, CustomerUser
 from scripts.showswitch import show_switch_data
 from scripts.buildtopology import build_topology_data
-from scripts.showlink import switch_link_data
+from scripts.showlink import show_link_data
+from scripts.showtunnel import show_tunnel_data
 from scripts.showhost import show_host_data
 import os
 
@@ -41,25 +42,25 @@ def index(request):
     return render_to_response('ui/templates/index.html')
 
 def show_switch(request):
-    text = show_switch_data(request)
-    response = HttpResponse(text)
-    return response
+    html = show_switch_data(request)
+    return HttpResponse(html)
 
 def show_link(request):
-    text = switch_link_data(request)
-    response = HttpResponse(text)
-    return response
+    html = show_link_data(request)
+    return HttpResponse(html)
 
 def show_host(request):
-    text = show_host_data(request)
-    response = HttpResponse(text)
-    return response
+    html = show_host_data(request)
+    return HttpResponse(html)
+
+def show_tunnel(request):
+    html = show_tunnel_data(request)
+    return HttpResponse(html)
 
 
 def build_topology(request):
-    text = build_topology_data(request)
-    response = HttpResponse(text)
-    return response
+    html = build_topology_data(request)
+    return HttpResponse(html)
 
 
    

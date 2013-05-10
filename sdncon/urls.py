@@ -36,6 +36,7 @@ urlpatterns = patterns('',
     (r'ui/show_switch', 'sdncon.ui.views.show_switch'),
     (r'ui/show_host', 'sdncon.ui.views.show_host'),
     (r'ui/show_link', 'sdncon.ui.views.show_link'),
+    (r'ui/show_tunnel', 'sdncon.ui.views.show_tunnel'),
     (r'ui/build_topology', 'sdncon.ui.views.build_topology'),
     
     # Uncomment the next line to enable the admin:
