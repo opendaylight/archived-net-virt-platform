@@ -87,6 +87,7 @@ MEDIA_ROOT = "%s/con/lib/python/django/contrib/admin/media/" % SDN_ROOT
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
 MEDIA_URL = ''
+STATIC_URL = '/static/'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
@@ -146,6 +147,7 @@ apps_array = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.staticfiles',
     #'django.contrib.sites',
     'django.contrib.messages',
     # Uncomment the next line to enable the admin:
@@ -157,6 +159,7 @@ apps_array = [
     'sdncon.coreui',
     'sdncon.clusterAdmin',
     #'sdncon.account',
+    'sdncon.ui',
     'sdncon.stats',
     'sdncon.syncd',
     'sdncon.statdropd'

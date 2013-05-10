@@ -29,6 +29,15 @@ urlpatterns = patterns('',
     # to INSTALLED_APPS to enable admin documentation:
     #(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
+    ###################################
+    # Views for the web UI
+    ###################################
+    (r'^$', 'sdncon.ui.views.index'),
+    (r'ui/show_switch', 'sdncon.ui.views.show_switch'),
+    (r'ui/show_host', 'sdncon.ui.views.show_host'),
+    (r'ui/show_link', 'sdncon.ui.views.show_link'),
+    (r'ui/build_topology', 'sdncon.ui.views.build_topology'),
+    
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
     (r'accounts/login/$', 'django.contrib.auth.views.login'),
