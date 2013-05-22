@@ -73,8 +73,13 @@
             <!-- Initial set of exports, probably need more here -->
             <Export-Package>
               org.sdnplatform.core,
+              org.sdnplatform.core.internal,
               org.sdnplatform.packet,
-              org.sdnplatform.threadpool
+              org.sdnplatform.threadpool,
+              org.jboss.netty.channel,
+              org.openflow.protocol,
+              org.openflow.protocol.factory,
+              org.openflow.protocol.statistics
             </Export-Package>
             <!-- Unpack and embed all dependencies, transitively -->
             <Embed-Transitive>true</Embed-Transitive>
