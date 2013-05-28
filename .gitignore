@@ -4,3 +4,6 @@
 /workspace
 *.egg-info
 sdnplatform/META-INF
+.project
+.settings
+target
